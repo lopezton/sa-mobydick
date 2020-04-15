@@ -1,0 +1,31 @@
+# Freely available stopword list.  This stopword
+
+# list provides a nice balance between coverage
+
+# and size.
+
+#
+
+#
+
+#
+
+eu
+
+dignissim
+
+non
+
+proin
+
+ut
+
+ornare
+
+neque
+
+duis
+
+semper
+
+sem
