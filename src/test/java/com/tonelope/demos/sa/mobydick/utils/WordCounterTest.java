@@ -23,7 +23,7 @@ public class WordCounterTest {
 	@Test
 	@Tag("happy-path")
 	public void testCountWords() {
-		this.testee = new WordCounter("count-words-test-1.txt");
+		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt");
 		assertFalse(this.testee.getCountMap().isEmpty());
 		assertEquals(2, this.testee.getCount("lorem"));
 		assertEquals(2, this.testee.getCount("eu"));
@@ -68,14 +68,14 @@ public class WordCounterTest {
 	@Tag("negative")
 	public void testCountWordsBadFile2() {
 		assertThrows(RuntimeException.class, () -> {
-			this.testee = new WordCounter("count-words-test-1.txt", "unknown.txt");
+			this.testee = new WordCounter("src/test/resources/count-words-test-1.txt", "unknown.txt");
 		});
 	}
 
 	@Test
 	@Tag("happy-path")
 	public void testCountWordsExcludingStops() {
-		this.testee = new WordCounter("count-words-test-1.txt", "count-words-stop-test-1.txt");
+		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt", "src/test/resources/count-words-stop-test-1.txt");
 
 		assertFalse(this.testee.getCountMap().isEmpty());
 		assertEquals(2, this.testee.getCount("lorem"));
