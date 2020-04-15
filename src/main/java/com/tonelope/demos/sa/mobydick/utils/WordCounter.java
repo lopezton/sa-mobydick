@@ -25,15 +25,15 @@ public class WordCounter {
 	private Set<String> stopWords = new HashSet<>();
 	private Map<String, Integer> countMap = new HashMap<>();
 
-	public WordCounter(String textFilename) {
+	public WordCounter(String textFilename) throws IOException {
 		process(textFilename, null);
 	}
 
-	public WordCounter(String textFilename, String stopFilename) {
+	public WordCounter(String textFilename, String stopFilename) throws IOException {
 		process(textFilename, stopFilename);
 	}
 
-	private void process(String textFilename, String stopFilename) {
+	private void process(String textFilename, String stopFilename) throws IOException {
 		// load stop words from file: stopFileName
 		if (null != stopFilename) {
 			try (BufferedReader rdr = new BufferedReader(new FileReader(stopFilename))) {
@@ -48,8 +48,6 @@ public class WordCounter {
 					// formatted correctly.)
 					this.stopWords.add(stopWord);
 				}
-			} catch (IOException e) {
-				throw new RuntimeException(e);
 			}
 		}
 
@@ -71,8 +69,6 @@ public class WordCounter {
 						}
 				});
 			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
 		}
 	}
 

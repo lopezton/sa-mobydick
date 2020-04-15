@@ -1,9 +1,8 @@
 package com.tonelope.demos.sa.mobydick;
 
-import java.util.LinkedHashMap;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import com.tonelope.demos.sa.mobydick.utils.WordCounter;
 
@@ -27,7 +26,14 @@ public class MobyDickApplication {
 			}
 		}
 
-		WordCounter wordCounter = new WordCounter(textFilename, stopFilename);
+		WordCounter wordCounter;
+		try {
+			wordCounter = new WordCounter(textFilename, stopFilename);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("Please ensure the provided file names are correct.", e);
+		} catch (IOException ioe) {
+			throw new RuntimeException("An unknown error occurred.", ioe);
+		} 
 
 		// get the map, stream it, sort it by value in descending order and print it
 		wordCounter.getCountMap().entrySet().stream()

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +26,7 @@ public class WordCounterTest {
 
 	@Test
 	@Tag("happy-path")
-	public void testCountWords() {
+	public void testCountWords() throws IOException {
 		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt");
 		
 		Map<String, Integer> countMap = this.testee.getCountMap(); 
@@ -65,7 +67,7 @@ public class WordCounterTest {
 	@Test
 	@Tag("negative")
 	public void testCountWordsBadFile1() {
-		assertThrows(RuntimeException.class, () -> {
+		assertThrows(FileNotFoundException.class, () -> {
 			this.testee = new WordCounter("unknown.txt");
 		});
 	}
@@ -73,14 +75,14 @@ public class WordCounterTest {
 	@Test
 	@Tag("negative")
 	public void testCountWordsBadFile2() {
-		assertThrows(RuntimeException.class, () -> {
+		assertThrows(FileNotFoundException.class, () -> {
 			this.testee = new WordCounter("src/test/resources/count-words-test-1.txt", "unknown.txt");
 		});
 	}
 
 	@Test
 	@Tag("happy-path")
-	public void testCountWordsExcludingStops() {
+	public void testCountWordsExcludingStops() throws IOException {
 		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt", "src/test/resources/count-words-stop-test-1.txt");
 
 		Map<String, Integer> countMap = this.testee.getCountMap(); 
@@ -121,7 +123,7 @@ public class WordCounterTest {
 
 	@Test
 	@Tag("bug")
-	public void testEmptyStringsShouldNotBeCounted() {
+	public void testEmptyStringsShouldNotBeCounted() throws IOException {
 		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt");
 		
 		Map<String, Integer> countMap = this.testee.getCountMap(); 
