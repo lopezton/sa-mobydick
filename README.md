@@ -17,3 +17,12 @@ Please be sure to have the following installed:
 * Eclipse Photon
 
 <i>Note: Newer versions may work, but the versions listed above are what have immediately been tested.</i>
+
+## Testing Information
+This project uses JUnit 5 for unit testing.
+
+### Executing the Tests
+Execute the following from the project root directory:
+```sh
+mvn clean test
+```
