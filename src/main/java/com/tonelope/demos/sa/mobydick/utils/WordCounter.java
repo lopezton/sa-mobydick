@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 public class WordCounter {
 
 	public static final String STOP_WORD_SKIP_CHAR = "#";
+	public static final String EMPTY_STRING = "";
 	public static final String SPACE = " ";
 
 	private Set<String> stopWords = new HashSet<>();
@@ -61,7 +62,7 @@ public class WordCounter {
 					.map(String::toLowerCase)
 					.map(s -> s.replaceAll("[^A-Za-z]+", ""))
 					.forEach(s -> {
-						if (this.stopWords.contains(s)) {
+						if (EMPTY_STRING.equals(s) || this.stopWords.contains(s)) {
 							return;
 						}
 						Integer existingCount = this.countMap.putIfAbsent(s, 1);

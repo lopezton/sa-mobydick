@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Map;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -24,7 +26,11 @@ public class WordCounterTest {
 	@Tag("happy-path")
 	public void testCountWords() {
 		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt");
-		assertFalse(this.testee.getCountMap().isEmpty());
+		
+		Map<String, Integer> countMap = this.testee.getCountMap(); 
+		assertFalse(countMap.isEmpty());
+		assertEquals(29, countMap.size());
+		
 		assertEquals(2, this.testee.getCount("lorem"));
 		assertEquals(2, this.testee.getCount("eu"));
 		assertEquals(1, this.testee.getCount("ipsum"));
@@ -77,7 +83,10 @@ public class WordCounterTest {
 	public void testCountWordsExcludingStops() {
 		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt", "src/test/resources/count-words-stop-test-1.txt");
 
-		assertFalse(this.testee.getCountMap().isEmpty());
+		Map<String, Integer> countMap = this.testee.getCountMap(); 
+		assertFalse(countMap.isEmpty());
+		assertEquals(19, countMap.size());
+		
 		assertEquals(2, this.testee.getCount("lorem"));
 		assertEquals(1, this.testee.getCount("ipsum"));
 		assertEquals(1, this.testee.getCount("dolor"));
@@ -110,4 +119,13 @@ public class WordCounterTest {
 		assertEquals(0, this.testee.getCount("sem"));
 	}
 
+	@Test
+	@Tag("bug")
+	public void testEmptyStringsShouldNotBeCounted() {
+		this.testee = new WordCounter("src/test/resources/count-words-test-1.txt");
+		
+		Map<String, Integer> countMap = this.testee.getCountMap(); 
+		assertFalse(countMap.isEmpty());
+		assertEquals(29, countMap.size());
+	}
 }
