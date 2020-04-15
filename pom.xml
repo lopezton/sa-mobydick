@@ -1,8 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.tonelope.demos.sa</groupId>
-  <artifactId>mobydick</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>moby-dick</name>
-  <description>A technical showcase.</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tonelope.demos.sa</groupId>
+	<artifactId>mobydick</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>moby-dick</name>
+	<description>A technical showcase.</description>
+	<scm>
+		<url>https://github.com/lopezton/sa-mobydick</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>tonelope</id>
+			<name>Tony Lopez</name>
+			<email>tony.lopez1013@gmail.com</email>
+			<url>http://tonelope.com</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 </project>
